@@ -2,6 +2,7 @@ let sinon = require("sinon");
 let main = require("../lib/main");
 let Student = require("../lib/student.js");
 let addStudent = require("../lib/addStudent");
+let generateTranscript = require("../lib/generateTranscript");
 
 // describe('main()', () => {
 
@@ -30,15 +31,15 @@ describe('addStudent()', () => {
     });
 });
 
-describe('generateTranscript()',()=>{
+describe('generateTranscript()', () => {
     let info = '101，102';
     let errorInfo = '101，asd';
-    let inexistentInfo='101，102，103';
+    let inexistentInfo = '101，102，103';
     let student = new Student('张三', 101, { math: 95, chinese: 92, english: 93, coding: 94 });
-    let otherStudent = new Student('李四', 102, { math: 90, chinese: 97, english: 91, coding: 96 });
-    let students = [student,otherStudent];
-    it('should generate transcript while input is correct',()=>{
-        let result = generateTranscript(info);
+    let otherStudent = new Student('李四', 102, { math: 90, chinese: 97, english: 91, coding: 89 });
+    let students = [student, otherStudent];
+    it('should generate transcript while input is correct', () => {
+        let result = generateTranscript(info, students);
         expect(result).toBe(`成绩单
 姓名|数学|语文|英语|编程|平均分|总分 
 ========================
@@ -49,8 +50,8 @@ describe('generateTranscript()',()=>{
 全班总分中位数：xxx
 `);
     });
-    it('should ignore student which is inexistent',()=>{
-        let result = generateTranscript(inexistentInfo);
+    it('should ignore student which is inexistent', () => {
+        let result = generateTranscript(inexistentInfo, students);
         expect(result).toBe(`成绩单
 姓名|数学|语文|英语|编程|平均分|总分 
 ========================
@@ -61,8 +62,8 @@ describe('generateTranscript()',()=>{
 全班总分中位数：xxx
 `);
     });
-    it('should return -1 while input info is not current',()=>{
-        let result = generateTranscript(errorInfo);
+    it('should return -1 while input info is not current', () => {
+        let result = generateTranscript(errorInfo, students);
         expect(result).toEqual(-1);
     });
 });
