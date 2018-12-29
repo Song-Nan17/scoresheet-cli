@@ -29,3 +29,40 @@ describe('addStudent()', () => {
         expect(result).toEqual(-1);
     });
 });
+
+describe('generateTranscript()',()=>{
+    let info = '101，102';
+    let errorInfo = '101，asd';
+    let inexistentInfo='101，102，103';
+    let student = new Student('张三', 101, { math: 95, chinese: 92, english: 93, coding: 94 });
+    let otherStudent = new Student('李四', 102, { math: 90, chinese: 97, english: 91, coding: 96 });
+    let students = [student,otherStudent];
+    it('should generate transcript while input is correct',()=>{
+        let result = generateTranscript(info);
+        expect(result).toBe(`成绩单
+姓名|数学|语文|英语|编程|平均分|总分 
+========================
+张三|95|92|93|94|93.5|374
+李四|90|97|91|89|91.75|367
+========================
+全班总分平均数：xxx
+全班总分中位数：xxx
+`);
+    });
+    it('should ignore student which is inexistent',()=>{
+        let result = generateTranscript(inexistentInfo);
+        expect(result).toBe(`成绩单
+姓名|数学|语文|英语|编程|平均分|总分 
+========================
+张三|95|92|93|94|93.5|374
+李四|90|97|91|89|91.75|367
+========================
+全班总分平均数：xxx
+全班总分中位数：xxx
+`);
+    });
+    it('should return -1 while input info is not current',()=>{
+        let result = generateTranscript(errorInfo);
+        expect(result).toEqual(-1);
+    });
+});
