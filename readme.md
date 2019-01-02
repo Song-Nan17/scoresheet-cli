@@ -104,6 +104,7 @@ src   //源文件
 
 ## Tasking
 [tasking](https://www.processon.com/view/link/5c27395fe4b04eb4e3665e2c)
+![](http://assets.processon.com/chart_image/5c234858e4b07ef7a9c2f5bf.png)
 实际代码中，有的为了代码整洁而提出的方法，如 `toAddStudent`和`toGenerateTranscript`，还有计算班级总分平均分和总分中位数的方法，因为我觉得不是本题考察重点，所以没有在tasking中画出。
 
 ## 如何本地运行
