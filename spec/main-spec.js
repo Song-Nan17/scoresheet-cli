@@ -10,7 +10,7 @@ describe('generateNewStudent()', () => {
     let errorStudentInfo = '张三，101，数学：95，语文：qw，英语：93，编程：94';
     it('should get student while input studentInfo is correct', () => {
         let result = generateNewStudent(studentInfo);
-        let student = new Student('张三', 101, [{ course: '数学', score: 95 }, { course: '语文', score: 92 }, { course: '英语', score: 93 }, { course: '编程', score: 94 }]);
+        let student = new Student('张三', 101, { '数学': 95, '语文': 92, '英语': 93, '编程': 94 });
         expect(result).toEqual(student)
     });
     it('should return -1 while input studentInfo is not correct', () => {
@@ -23,9 +23,9 @@ describe('generateTranscript()', () => {
     let info = '101，102';
     let errorInfo = '101，asd';
     let inexistentInfo = '101，102，104';
-    let student = new Student('张三', 101, [{ course: '数学', score: 95 }, { course: '语文', score: 92 }, { course: '英语', score: 93 }, { course: '编程', score: 94 }]);
-    let otherStudent = new Student('李四', 102, [{ course: '数学', score: 90 }, { course: '语文', score: 97 }, { course: '英语', score: 91 }, { course: '编程', score: 89 }]);
-    let thirdStudent = new Student('王五', 103, [{ course: '数学', score: 89 }, { course: '语文', score: 92 }, { course: '英语', score: 94 }, { course: '编程', score: 88 }]);
+    let student = new Student('张三', 101, { '数学': 95, '语文': 92, '英语': 93, '编程': 94 });
+    let otherStudent = new Student('李四', 102, { '数学': 90, '语文': 97, '英语': 91, '编程': 89 });
+    let thirdStudent = new Student('王五', 103, { '数学': 89, '语文': 92, '英语': 94, '编程': 88 });
     let students = [student, otherStudent, thirdStudent];
     it('should generate transcript while input is correct', () => {
         let result = generateTranscript(info, students);
